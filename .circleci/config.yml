@@ -58,12 +58,8 @@ jobs:
       - run:
           name: Test setup.py with tox if environment has changed.
           command: |
-            if [ $(git diff origin/master --name-only -- environment.yml) ]; then
-              echo "Running tox to test setup.py"
-              ~/miniconda/envs/mibilib/bin/tox
-            else
-              echo "Environment did not change; skipping tox."
-            fi
+            echo "Running tox to test setup.py"
+            ~/miniconda/envs/mibilib/bin/tox
 
   tag_test:
     working_directory: ~/mibilib
