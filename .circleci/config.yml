@@ -21,6 +21,8 @@ jobs:
             else
                 echo "Using cached Miniconda install";
             fi
+            
+            echo 'eval "$(~/miniconda/bin/conda shell.bash hook)"' >> $BASH_ENV
       - save_cache:
           key: cache2-{{ checksum "environment.yml" }}
           paths:
@@ -59,6 +61,7 @@ jobs:
           name: Test setup.py with tox if environment has changed.
           command: |
             echo "Running tox to test setup.py"
+            source ~/.bashrc
             ~/miniconda/envs/mibilib/bin/tox
 
   tag_test:
